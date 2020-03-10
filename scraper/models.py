@@ -12,8 +12,8 @@ def db_connect():
     Performs database connection using database settings from settings.py.
     Returns sqlalchemy engine instance
     """
-    return create_engine(URL(**scraper.settings.DATABASE))
-    #return create_engine(scraper.settings.SQLALCHEMY_DATABASE_URI)
+   
+    return create_engine(scraper.settings.SQLALCHEMY_DATABASE_URI)
 
 def create_deals_table(engine):
     """"""
