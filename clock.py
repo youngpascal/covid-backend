@@ -1,11 +1,15 @@
-from apscheduler.schedulers.blocking import BlockingScheduler
+from apscheduler.schedulers.twisted import TwistedScheduler
 from scrape import run_spider
-
-sched = BlockingScheduler()
-
-@sched.scheduled_job('interval', minutes=5)
-def timed_job():
-    run_spider()
+from twisted.internet import reactor
 
 
-sched.start()
+
+if __name__ == "__main__":
+    scheduler = TwistedScheduler()
+    scheduler.add_job(run_spider, 'interval', minutes=5)
+    scheduler.start()
+    
+    try:
+        reactor.run()
+    except (KeyboardInterrupt, SystemExit):
+        pass
