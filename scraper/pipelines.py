@@ -24,6 +24,7 @@ class TutorialPipeline(object):
             
             #clear data from table
             try:
+                print('wiping databases')
                 session = self.Session()
                 session.query(Data).delete()
                 session.commit()

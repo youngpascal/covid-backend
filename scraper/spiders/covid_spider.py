@@ -30,7 +30,7 @@ class CovidSpider(Spider):
             # parse data and add it to CountryTest
             # check is name field is empty
             if c[0] == ' ':
-                print(c[0])
+                
                 
                 # check either <a> or <span>
                 c_name = country.css('a::text').getall()
@@ -49,8 +49,7 @@ class CovidSpider(Spider):
                 data['total_recovered'] = int(''.join(re.findall("[0-9]", c[7]))) if c[7].strip() else 0
                 data['condition'] = int(''.join(re.findall("[0-9]", c[8]))) if c[8].strip() else 0
             else:
-                print('###')
-                print(c)
+                
                 total_check = c[0].strip().split(',')
                 if total_check[0].isdigit():
                     data['name'] = 'Total'
